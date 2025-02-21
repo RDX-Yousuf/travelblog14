@@ -1,0 +1,118 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ tip.title }} - Travel Tip Details</title>
+    <link rel="stylesheet" href="{% static 'travel_tips.css' %}">
+    <style>
+        /* General page styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        /* Main container styling */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Back button styling */
+        .back-button-section {
+            margin: 20px 0;
+        }
+
+        .back-button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Tip details section styling */
+        .tip-details-section {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .tip-details-section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .tip-details-section p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        /* Image styling */
+        .tip-image {
+            display: inline-block;
+            max-width: 300px; /* Adjust based on your design */
+            width: 100%;
+            height: auto;
+            margin-right: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive design */
+        @media screen and (max-width: 768px) {
+            .tip-details-section {
+                padding: 20px;
+            }
+
+            .tip-details-section h2 {
+                font-size: 1.8em;
+            }
+
+            .tip-image {
+                max-width: 100%;
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- Back Button Section -->
+        <section class="back-button-section">
+            <a href="javascript:history.back()" class="back-button">← Back</a>
+        </section>
+
+        <!-- Tip Details Section -->
+        <section class="tip-details-section">
+            <h2>{{ tip.title }}</h2>
+            {% if tip.image %}
+                <img src="{{ tip.image.url }}" alt="{{ tip.title }}" class="tip-image">
+            {% endif %}
+            <p>{{ tip.short_description }}</p>
+            <p>{{ tip.long_description }}</p>
+        </section>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <title>{{ destination.name }} - Travel Blog</title>
+</head>
+<body>
+    <!-- Glassmorphism Navbar -->
+    <header class="glass-navbar">
+        <div class="container">
+            <h1>GAMYAM</h1>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/traveltips/">Travel Tips</a>
+                <a href="/images/">Images</a>
+                <a href="/destination/">Destination</a>
+                <a href="/contact/">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Destination Detail Section -->
+    <section class="destination-detail">
+        <div class="container">
+            <h2>{{ destination.name }}</h2> <!-- Display the destination's name -->
+            <img src="{{ destination.image.url }}" alt="{{ destination.name }}" class="destination-image"style="width: 100%; max-width: 600px; height: auto; display: block; margin: 0 auto; border-radius: 10px;">
+            <p>{{ destination.long_description }}</p> <!-- Display the long description -->
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="plain-footer">
+        <div class="container">
+            <p>&copy; 2025 Travel Blog | All Rights Reserved</p>
+        </div>
+    </footer>
+</body>
+</html>

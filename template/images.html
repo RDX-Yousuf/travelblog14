@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'images.css' %}">
+    <title>Travel Images</title>
+</head>
+
+<body>
+    <!-- Glassmorphism Navbar -->
+    <header class="glass-navbar" style="background-image: url('{% static "images/2.jpg" %}'); background-size: cover; background-position: center; background-repeat: no-repeat;"
+    >
+        <div class="container">
+            <h1>GAMYAM</h1>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/traveltips/">Travel Tips</a>
+                <a href="/images/">Gallery</a>
+                <a href="/destinations/">Destinations</a>
+                <a href="/contact/">Contact</a>
+            </nav>
+
+            <!-- Theme Toggle (optional, if you want it here too) -->
+            <div class="theme-toggle">
+                <span>🌞</span>
+                <input type="checkbox" id="theme-toggle">
+                <span>🌙</span>
+            </div>
+        </div>
+    </header>
+
+    <section>
+        <h2>Gallery</h2>
+        <div class="image-container">
+            {% for image in images %}
+            <div class="image-item">
+                <img src="{{ image.image.url }}" alt="{{ image.title }}" onclick="openModal(this)">
+                <p class="image-name">{{ image.title }}</p>
+                <p class="image-description" style="display:none;">{{ image.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div id="modalDescription" class="modal-description"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Image Gallery. All rights reserved.</p>
+    </footer>
+
+    <script src="{% static 'images.js' %}"></script>
+</body>
+
+</html>

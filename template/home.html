@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <title>My Travel Blog</title>
+</head>
+<body>
+    <!-- Glassmorphism Navbar -->
+    <header class="glass-navbar">
+        <div class="container">
+            <h1>GAMYAM</h1>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/traveltips/">Travel Tips</a>
+                <a href="/images/">Gallery</a>
+                <a href="/destinations/">Destinations</a>
+                <a href="/contact/">Contact</a>
+            </nav>
+            
+            <!-- Toggle Button -->
+            <div class="theme-toggle">
+                <span>🌞</span>
+                <input type="checkbox" id="toggle-dark-mode">
+                <span>🌙</span>
+            </div>
+        </div>
+    </header>
+    
+
+    <!-- Hero Section with Background GIF -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Explore the World with Me</h2>
+            <p>“Traveling – it leaves you speechless, then turns you into a storyteller.”</p>
+        </div>
+        <video autoplay muted loop class="background-video">
+            <source src="{% static 'images/welcome.mp4' %}" type="video/mp4">
+        </video>
+    </section>
+    
+    <section class="places-container">
+        {% for place in places %}
+        <div class="place-card" onclick="openModal('{{ place.id }}')">
+            <img src="{{ place.image.url }}" alt="{{ place.name }}">
+            <div class="content">
+                <h3>{{ place.name }}</h3>
+                <p>{{ place.short_description }}</p>
+                <a href="{% url 'place_detail' place.id %}" class="explore-btn">Explore More</a>
+                <button class="explore-btn">Explore More</button>
+            </div>
+        </div>
+    
+
+        <!-- Modal Popup for Full Info -->
+        <div class="modal" id="modal-{{ place.id }}">
+            <img src="{{ place.image.url }}" alt="{{ place.name }}">
+            <div class="modal-content">
+                <h3>{{ place.name }}</h3>
+                <p>{{ place.long_description }}</p>
+                <button class="close-btn" onclick="closeModal('{{ place.id }}')">Close</button>
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+
+    
+    <div class="overlay" id="overlay" onclick="closeAllModals()"></div>
+    
+
+    
+<br><br><br>
+    <!-- Footer Section -->
+<footer class="plain-footer">
+    <div class="container">
+        <p>&copy; 2025 Travel Blog | All Rights Reserved</p>
+    </div>
+</footer>
+
+    <script src="{% static 'home.js' %}"></script>
+</body>
+</html>

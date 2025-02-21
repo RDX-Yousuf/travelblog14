@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'destinations.css' %}">
+    <title>Destinations - Travel Blog</title>
+</head>
+<body>
+    <!-- Glassmorphism Navbar -->
+    <header class="glass-navbar" style="background-image: url('{% static "images/2.jpg" %}'); background-size: cover; background-position: center; background-repeat: no-repeat;"
+    >
+        <div class="container">
+            <h1>GAMYAM</h1>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/traveltips/">Travel Tips</a>
+                <a href="/images/">Gallery</a>
+                <a href="/destinations/">Destinations</a>
+                <a href="/contact/">Contact</a>
+            </nav>
+            
+            <!-- Theme Toggle (Optional) -->
+            <div class="theme-toggle">
+                <span>🌞</span>
+                <input type="checkbox" id="toggle-dark-mode">
+                <span>🌙</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="background-image: url('{% static 'images/background.jpg' %}');">
+        <div class="hero-content">
+            <h2>Explore Amazing Destinations</h2>
+        </div>
+    </section>
+
+    <!-- Destinations Grid -->
+    <section class="destinations-container">
+        <div class="container">
+            <div class="destinations-grid">
+                {% for destination in destinations %}
+                <div class="destination-card">
+                    <img src="{{ destination.image.url }}" alt="{{ destination.name }}">
+                    <div class="destination-info">
+                        <h3>{{ destination.name }}</h3>
+                        <p>{{ destination.short_description }}</p>
+                        <a href="{% url 'destination_detail' destination.id %}" class="explore-btn">Explore More</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="plain-footer">
+        <div class="container">
+            <p>&copy; 2025 Travel Blog | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'destinations.js' %}"></script>
+</body>
+</html>

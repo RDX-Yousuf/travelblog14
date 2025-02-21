@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'travel_tips.css' %}">
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <title>Travel Tips</title>
+</head>
+
+<body>
+    <!-- Glassmorphism Navbar -->
+    <header class="glass-navbar">
+        <div class="container">
+            <h1>GAMYAM</h1>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/traveltips/">Travel Tips</a>
+                <a href="/images/">Gallery</a>
+                <a href="/destinations/">Destinations</a>
+                <a href="/contact/">Contact</a>
+            </nav>
+
+            <!-- Theme Toggle -->
+            <div class="theme-toggle">
+                <span>🌞</span>
+                <input type="checkbox" id="theme-toggle">
+                <span>🌙</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Tip Section with Background Image -->
+    <div class="hero-tip" style="background-image: url('{% static 'images/hero_tip.jpg' %}');" tabindex="0">
+        <h3>{{ tips.0.title }}</h3>
+        <p>{{ tips.0.short_description }}</p>
+    </div>
+
+    <!-- Other Travel Tips Below Hero Section -->
+<section class="tips-section">
+    <h2>More Travel Tips</h2>
+
+    {% for tip in tips|slice:"1:" %}
+        <div class="tip-card">
+            <a href="{% url 'tip_detail' tip.id %}">
+                <h3>{{ tip.title }}</h3>
+                <p>{{ tip.short_description }}</p>
+            </a>
+        </div>
+    {% endfor %}
+</section>
+
+
+    <!-- Overlay to Close All Modals -->
+    <div class="overlay" id="overlay" onclick="closeAllTipModals()"></div>
+
+    <!-- Footer Section -->
+    <footer class="plain-footer">
+        <div class="container">
+            <p>&copy; 2025 Travel Blog | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'travel_tips.js' %}"></script>
+    <script>
+        // Open Modal Function
+        function openTipModal(tipId) {
+            const modal = document.getElementById('tip-modal-' + tipId);
+            const overlay = document.getElementById('overlay');
+            modal.style.display = 'block';
+            overlay.style.display = 'block';
+        }
+
+        // Close Modal Function
+        function closeTipModal(tipId) {
+            const modal = document.getElementById('tip-modal-' + tipId);
+            const overlay = document.getElementById('overlay');
+            modal.style.display = 'none';
+            overlay.style.display = 'none';
+        }
+
+        // Close All Modals when overlay is clicked
+        function closeAllTipModals() {
+            const modals = document.querySelectorAll('.tip-modal');
+            const overlay = document.getElementById('overlay');
+            modals.forEach(modal => {
+                modal.style.display = 'none';
+            });
+            overlay.style.display = 'none';
+        }
+
+        // Theme Toggle Function
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('change', () => {
+            if (themeToggle.checked) {
+                body.classList.add('dark-theme');
+            } else {
+                body.classList.remove('dark-theme');
+            }
+        });
+    </script>
+</body>
+
+</html>

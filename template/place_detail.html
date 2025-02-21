@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ place.name }} - Details</title>
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+</head>
+<body>
+
+<!-- Glassmorphism Navbar -->
+<header class="glass-navbar">
+    <div class="container">
+        <h1>GAMYAM</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/traveltips/">Travel Tips</a>
+            <a href="/images/">Gallery</a>
+            <a href="/destinations/">Destinations</a>
+            <a href="/contact/">Contact</a>
+        </nav>
+
+        <!-- Theme Toggle -->
+        <div class="theme-toggle">
+            <span>🌞</span>
+            <input type="checkbox" id="theme-toggle">
+            <span>🌙</span>
+        </div>
+    </div>
+</header>
+
+<!-- Place Details Section -->
+<section class="place-detail">
+    <div class="place-container">
+        <img src="{{ place.image.url }}" alt="{{ place.name }}" class="place-image">
+        <div class="place-info">
+            <h2>{{ place.name }}</h2>
+            <p>{{ place.long_description }}</p>
+            <a href="/" class="back-btn">← Back to Home</a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="plain-footer">
+    <div class="container">
+        <p>&copy; 2025 Travel Blog | All Rights Reserved</p>
+    </div>
+</footer>
+
+<script src="{% static 'home.js' %}"></script>
+</body>
+</html>
