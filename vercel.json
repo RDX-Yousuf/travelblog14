@@ -2,7 +2,7 @@
     "version": 2,
     "builds": [
       {
-        "src": "travelblog14/wsgi.py",
+        "src": "travelblog/wsgi.py",
         "use": "@vercel/python",
         "config": {
           "maxLambdaSize": "15mb",
@@ -20,7 +20,7 @@
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "travelblog14/wsgi.py"
+        "dest": "travelblog/wsgi.py"
       }
     ],
     "outputDirectory": "static"
